@@ -5,12 +5,14 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBFAFA"
     tools:context=".FragmentInputAmount">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#F4F0F0"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,48 +21,55 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <ImageView
-                android:layout_gravity="center"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_baseline_input_24"
-                />
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_input_24" />
 
             <com.google.android.material.textfield.TextInputLayout
-                app:boxCornerRadiusTopStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:boxCornerRadiusTopStart="10dp">
+
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/account_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""/>
+                    android:textColor="#000000"
+                    android:textSize="30dp"
+                    android:text="" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                app:boxCornerRadiusTopStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                app:boxCornerRadiusTopStart="10dp">
+
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/recipient_Amount"
+                    android:id="@+id/recipientAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Amount"/>
+                    android:background="#878282"
+                    android:textColor="#000000"
+                    android:hint="Amount" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/send_Amount"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Send"
-                android:layout_margin="30dp">
+                android:layout_margin="30dp"
+                android:backgroundTint="@color/colorPrimary"
 
-            </com.google.android.material.button.MaterialButton>
+                android:text="Send"/>
+
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

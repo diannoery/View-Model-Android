@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.navigation.ViewModel.ViewModelTransfer
 import kotlinx.android.synthetic.main.fragment_confirmation.*
 
 
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_confirmation.*
  */
 class FragmentConfirmation : Fragment(),View.OnClickListener {
     lateinit var navController: NavController
-
+    val viewModelTransfer by activityViewModels<ViewModelTransfer>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,8 +41,12 @@ class FragmentConfirmation : Fragment(),View.OnClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        name_done.text="${arguments?.getString("nama_done")}"
-        amount_done.text="Rp.${arguments?.getString("amount_done")}"
+       // name_done.text="Sent To ${arguments?.getString("nama_done")}"
+        name_done.text="Sent To ${viewModelTransfer.nama.value}"
+        AcountNumber.text="${viewModelTransfer.acount_number.value}"
+        //amount_done.text="Rp.${arguments?.getString("amount_done")}"
+        amount_done.text="Rp.${viewModelTransfer.amount_send.value}"
+        bank.text="${viewModelTransfer.nama_bank.value}"
     }
 
     override fun onClick(v: View?) {

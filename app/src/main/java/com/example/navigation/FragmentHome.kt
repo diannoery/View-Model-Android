@@ -1,5 +1,6 @@
 package com.example.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -37,6 +38,7 @@ class FragmentHome : Fragment(),View.OnClickListener {
         transfer_button.setOnClickListener(this)
         balance_button.setOnClickListener(this)
         transaction_history_button.setOnClickListener(this)
+        share.setOnClickListener(this)
     }
 
     override fun onClick(v:View){
@@ -44,6 +46,13 @@ class FragmentHome : Fragment(),View.OnClickListener {
             transfer_button->{navController.navigate(R.id.action_fragmentHome_to_transactionActivity)}
             balance_button->{navController.navigate(R.id.action_fragmentHome_to_fragmentBalance)}
             transaction_history_button->{navController.navigate(R.id.action_fragmentHome_to_fragmentHistory)}
+            share->{
+                val shareButton=Intent(Intent.ACTION_SEND)
+                shareButton.type="text/plain"
+                shareButton.putExtra(Intent.EXTRA_SUBJECT,"MY Wallet" )
+                shareButton.putExtra(Intent.EXTRA_TEXT,"http://www.facebook.com")
+                startActivity(Intent.createChooser(shareButton,"Share Link Gan !!"))
+            }
         }
     }
 

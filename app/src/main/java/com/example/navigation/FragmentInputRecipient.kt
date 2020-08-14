@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.navigation.ViewModel.ViewModelTransfer
 import kotlinx.android.synthetic.main.fragment_input_recipient.*
+import kotlin.toString as toString1
 
 
 /**
@@ -17,6 +20,8 @@ import kotlinx.android.synthetic.main.fragment_input_recipient.*
  * create an instance of this fragment.
  */
 class FragmentInputRecipient : Fragment(),View.OnClickListener {
+
+    val viewModelTransfer by activityViewModels<ViewModelTransfer>()
 
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +46,15 @@ class FragmentInputRecipient : Fragment(),View.OnClickListener {
     override fun onClick(v: View?) {
        when(v){
            inputRecipient->{
-               val bundle= bundleOf("Name" to recipient_name_text.text.toString())
-               navController.navigate(R.id.action_fragmentInputRecipient_to_fragmentInputAmount,bundle)}
+              // val bundle= bundleOf("Name" to recipient_name_text.text.toString())
+               //navController.navigate(R.id.action_fragmentInputRecipient_to_fragmentInputAmount,bundle)
+
+                viewModelTransfer.nama.value = namaPengirim.text?.toString()
+               viewModelTransfer.acount_number.value=recipientAccount.text?.toString()
+               viewModelTransfer.nama_bank.value=bankName.selectedItem.toString()
+                println(bankName.selectedItem.toString())
+               navController.navigate(R.id.action_fragmentInputRecipient_to_fragmentInputAmount)
+           }
        }
     }
 }

@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.navigation.ViewModel.ViewModelTransfer
 import kotlinx.android.synthetic.main.fragment_input_amount.*
 
 
@@ -19,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_input_amount.*
  */
 class FragmentInputAmount : Fragment(), View.OnClickListener {
     private lateinit var navController: NavController
-
+    val viewModelTransfer by activityViewModels<ViewModelTransfer>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,14 +43,16 @@ class FragmentInputAmount : Fragment(), View.OnClickListener {
     @SuppressLint("SetTextI18n")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        account_name.text="TO : ${arguments?.getString("Name")} "
+        //account_name.text="TO : ${arguments?.getString("Name")} "
+        account_name.text="TO : ${viewModelTransfer.nama.value} "
     }
 
     override fun onClick(v: View?) {
        when(v){
            send_Amount->{
-               val bundle= bundleOf("nama_done" to account_name.text.toString(),"amount_done" to recipient_Amount.text.toString())
-               navController.navigate(R.id.action_fragmentInputAmount_to_fragmentConfirmation,bundle)
+               //val bundle= bundleOf("nama_done" to account_name.text.toString(),"amount_done" to recipient_Amount.text.toString())
+               navController.navigate(R.id.action_fragmentInputAmount_to_fragmentConfirmation)
+               viewModelTransfer.amount_send.value=recipientAmount.text.toString()
            }
        }
     }
